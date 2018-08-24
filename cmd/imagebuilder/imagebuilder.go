@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	dockertypes "github.com/docker/docker/api/types"
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/glog"
 
@@ -75,7 +74,7 @@ func main() {
 	options.TransientMounts = mounts
 
 	options.Out, options.ErrOut = os.Stdout, os.Stderr
-	options.AuthFn = func(name string) ([]dockertypes.AuthConfig, bool) {
+	options.AuthFn = func(name string) ([]docker.AuthConfiguration, bool) {
 		return nil, false
 	}
 	options.LogFn = func(format string, args ...interface{}) {

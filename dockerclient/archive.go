@@ -413,7 +413,7 @@ func archiveOptionsFor(infos []CopyInfo, dst string, excludes []string, check Di
 	}
 
 	options := &archive.TarOptions{
-		ChownOpts: &idtools.IDPair{UID: 0, GID: 0},
+		ChownOpts: &idtools.Identity{UID: 0, GID: 0},
 	}
 
 	pm, err := fileutils.NewPatternMatcher(excludes)

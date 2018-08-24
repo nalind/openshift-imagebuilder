@@ -13,10 +13,9 @@ import (
 	"strconv"
 	"strings"
 
-	dockertypes "github.com/docker/docker/api/types"
-	"github.com/docker/docker/builder/dockerfile/parser"
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/glog"
+	"github.com/moby/buildkit/frontend/dockerfile/parser"
 
 	"github.com/openshift/imagebuilder"
 	"github.com/openshift/imagebuilder/imageprogress"
@@ -98,7 +97,7 @@ type ClientExecutor struct {
 
 	// AuthFn will handle authenticating any docker pulls if Image
 	// is set to nil.
-	AuthFn func(name string) ([]dockertypes.AuthConfig, bool)
+	AuthFn func(name string) ([]docker.AuthConfiguration, bool)
 	// HostConfig is used to start the container (if necessary).
 	HostConfig *docker.HostConfig
 	// LogFn is an optional command to log information to the end user
@@ -114,7 +113,7 @@ type ClientExecutor struct {
 }
 
 // NotAuthFn can be used for AuthFn when no authentication is required in Docker.
-func NoAuthFn(string) ([]dockertypes.AuthConfig, bool) {
+func NoAuthFn(string) ([]docker.AuthConfiguration, bool) {
 	return nil, false
 }
 
@@ -565,7 +564,7 @@ func (e *ClientExecutor) LoadImage(from string) (*docker.Image, error) {
 	// TODO: we may want to abstract looping over multiple credentials
 	auth, _ := e.AuthFn(repository)
 	if len(auth) == 0 {
-		auth = append(auth, dockertypes.AuthConfig{})
+		auth = append(auth, docker.AuthConfiguration{})
 	}
 
 	if e.LogFn != nil {
