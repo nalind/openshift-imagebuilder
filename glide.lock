@@ -1,12 +1,16 @@
-hash: 83f9efdd1e627e70e3ac4bbdcda2fb160c1279bdc5fed831ef8f4ae813fb5e07
-updated: 2018-03-16T00:03:01.028897715-04:00
+hash: ef99c0b1d1144d2d1871fb255e425fd7aa7d5a3382111ba2087ed4dd9f171183
+updated: 2018-08-24T11:14:20.233340191-04:00
 imports:
 - name: github.com/Azure/go-ansiterm
-  version: 19f72df4d05d31cbe1c56bfc8045c96babff6c7e
+  version: d6e3b3328b783f23731bc4d058875b0371ff8109
   subpackages:
   - winterm
+- name: github.com/containerd/continuity
+  version: c7c5070e6f6e090ab93b0a61eb921f2196fc3383
+  subpackages:
+  - pathdriver
 - name: github.com/docker/docker
-  version: b68221c37ee597950364788204546f9c9d0e46a1
+  version: 0d9d86107d1664d351aab6f593fdc083b4f2175b
   subpackages:
   - api/types
   - api/types/blkiodev
@@ -19,70 +23,71 @@ imports:
   - api/types/swarm
   - api/types/swarm/runtime
   - api/types/versions
-  - builder/dockerfile/command
-  - builder/dockerfile/parser
+  - errdefs
   - opts
   - pkg/archive
   - pkg/fileutils
   - pkg/homedir
   - pkg/idtools
   - pkg/ioutils
-  - pkg/jsonlog
-  - pkg/jsonmessage
   - pkg/longpath
   - pkg/mount
   - pkg/pools
-  - pkg/promise
   - pkg/stdcopy
   - pkg/system
-  - pkg/term
-  - pkg/term/windows
 - name: github.com/docker/go-connections
-  version: 3ede32e2033de7505e6500d6c868c2b9ed9f169d
+  version: 97c2040d34dfae1d1b1275fa3a78dbdd2f41cf7e
   subpackages:
   - nat
 - name: github.com/docker/go-units
-  version: e30f1e79f3cd72542f2026ceec18d3bd67ab859c
+  version: 47565b4f722fb6ceae66b95f853feed578a4a51c
+- name: github.com/docker/libnetwork
+  version: 9decd25f5438a4e696dd9b6546ff03e970158bae
+  subpackages:
+  - ipamutils
 - name: github.com/fsouza/go-dockerclient
-  version: 7511300f03c521cfc8e07e88ea8c915add790f50
-  repo: https://github.com/openshift/go-dockerclient.git
+  version: 9a621fe53e5e61d9d6127feecf62c112f3266906
+  subpackages:
+  - internal/archive
+  - internal/jsonmessage
+  - internal/term
 - name: github.com/gogo/protobuf
-  version: fcdc5011193ff531a548e9b0301828d5a5b97fd8
+  version: 98f6aa8b3bcf03e45b1a8b48257c754766d5c3c8
   subpackages:
   - proto
 - name: github.com/golang/glog
   version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
 - name: github.com/Microsoft/go-winio
-  version: 78439966b38d69bf38227fbf57ac8a6fee70f69a
+  version: 97e4973ce50b2ff5f09635a57e2b88a037aae829
+- name: github.com/moby/buildkit
+  version: f71f4b63a218fcd66fa4d2dbdf3f2bd0db78eb74
+  subpackages:
+  - frontend/dockerfile/command
+  - frontend/dockerfile/parser
 - name: github.com/Nvveen/Gotty
   version: cd527374f1e5bff4938207604a14f2e38a9cf512
 - name: github.com/opencontainers/go-digest
-  version: 279bed98673dd5bef374d3b6e4b09e2af76183bf
+  version: c9281466c8b2f606084ac71339773efd177436e7
 - name: github.com/opencontainers/image-spec
-  version: 97ae57f204b5956aa313d453ead9094ff9056b32
+  version: e562b04403929d582d449ae5386ff79dd7961a11
   subpackages:
   - specs-go
   - specs-go/v1
 - name: github.com/opencontainers/runc
-  version: ae2948042b08ad3d6d13cd09f40a50ffff4fc688
+  version: 459bfaec1fc6c17d8bfb12d0a0f69e7e7271ed2a
   subpackages:
   - libcontainer/system
   - libcontainer/user
 - name: github.com/pkg/errors
-  version: c605e284fe17294bda444b34710735b29d1a9d90
+  version: 816c9085562cd7ee03e7f8188a1cfd942858cded
 - name: github.com/sirupsen/logrus
-  version: 89742aefa4b206dcf400792f3bd35b542998eb3b
+  version: fc587f31c804fe6853cd90f0d8d90af588eca5bd
 - name: golang.org/x/crypto
-  version: eb71ad9bd329b5ac0fd0148dd99bd62e8be8e035
+  version: 614d502a4dac94afa3a6ce146bd1736da82514c6
   subpackages:
   - ssh/terminal
-- name: golang.org/x/net
-  version: 1c05540f6879653db88113bc4a2b70aec4bd491f
-  subpackages:
-  - context
-  - context/ctxhttp
 - name: golang.org/x/sys
-  version: 07c182904dbd53199946ba614a412c61d3c548f5
+  version: 4910a1d54f876d7b22162a85f4d066d3ee649450
   subpackages:
   - unix
   - windows

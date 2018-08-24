@@ -34,6 +34,10 @@ For the media type(s) that this document is compatible with, see the [matrix][ma
 
     - [`application/vnd.oci.image.manifest.v1+json`](manifest.md)
 
+    Also, implementations SHOULD support the following media types:
+
+    - `application/vnd.oci.image.index.v1+json` (nested index)
+
     Image indexes concerned with portability SHOULD use one of the above media types.
     Future versions of the spec MAY use a different mediatype (i.e. a new versioned format).
     An encountered `mediaType` that is unknown SHOULD be safely ignored.
@@ -63,7 +67,9 @@ For the media type(s) that this document is compatible with, see the [matrix][ma
 
         This OPTIONAL property specifies an array of strings, each specifying a mandatory OS feature.
         When `os` is `windows`, image indexes SHOULD use, and implementations SHOULD understand the following values:
-          - `win32k`: image requires `win32k.sys` on the host (Note: `win32k.sys` is missing on Nano Server)
+
+        - `win32k`: image requires `win32k.sys` on the host (Note: `win32k.sys` is missing on Nano Server)
+
         When `os` is not `windows`, values are implementation-defined and SHOULD be submitted to this specification for standardization.
 
     - **`variant`** *string*

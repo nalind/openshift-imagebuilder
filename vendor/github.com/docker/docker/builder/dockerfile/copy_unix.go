@@ -1,21 +1,23 @@
 // +build !windows
 
-package dockerfile
+package dockerfile // import "github.com/docker/docker/builder/dockerfile"
 
 import (
 	"os"
 	"path/filepath"
 
+	"github.com/docker/docker/pkg/containerfs"
 	"github.com/docker/docker/pkg/idtools"
 )
 
-func fixPermissions(source, destination string, rootIDs idtools.IDPair, overrideSkip bool) error {
+func fixPermissions(source, destination string, identity idtools.Identity, overrideSkip bool) error {
 	var (
 		skipChownRoot bool
 		err           error
 	)
 	if !overrideSkip {
-		skipChownRoot, err = isExistingDirectory(destination)
+		destEndpoint := &copyEndpoint{driver: containerfs.NewLocalDriver(), path: destination}
+		skipChownRoot, err = isExistingDirectory(destEndpoint)
 		if err != nil {
 			return err
 		}
@@ -37,6 +39,10 @@ func fixPermissions(source, destination string, rootIDs idtools.IDPair, override
 		}
 
 		fullpath = filepath.Join(destination, cleaned)
-		return os.Lchown(fullpath, rootIDs.UID, rootIDs.GID)
+		return os.Lchown(fullpath, identity.UID, identity.GID)
 	})
+}
+
+func validateCopySourcePath(imageSource *imageMount, origPath, platform string) error {
+	return nil
 }
